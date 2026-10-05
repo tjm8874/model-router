@@ -1,0 +1,18 @@
+# Merge this example into the active Core user's config.toml.
+# Replace these placeholder IDs with the exact IDs returned by /v1/models.
+# Top-level workload keys must precede [local_ai].
+chat_provider = "local-openai:MacMini:your-small-model-id"
+memory_provider = "local-openai:MacMini:your-small-model-id"
+learning_provider = "local-openai:MacMini:your-small-model-id"
+reasoning_provider = "local-openai:LinuxGPU:your-large-model-id"
+agentic_provider = "local-openai:LinuxGPU:your-large-model-id"
+coding_provider = "local-openai:LinuxGPU:your-large-model-id"
+
+[local_ai]
+runtime_enabled = true
+opt_in_confirmed = true
+provider = "lm_studio"
+base_url = "http://127.0.0.1:18080/v1"
+chat_model_id = "MacMini:your-small-model-id"
+# No image or embedding route is claimed by this text-only example.
+vision_model_id = ""

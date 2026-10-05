@@ -1,0 +1,33 @@
+# Run the router beside OpenHuman Core on a Mac mini with 64 GB RAM.
+# Serve a small model locally and a larger model on a separate Linux GPU PC.
+# These are illustrative ports; substitute the endpoints your servers expose.
+[server]
+host = "127.0.0.1"
+port = 18080
+connect_timeout_secs = 10
+read_timeout_secs = 300
+catalog_timeout_secs = 15
+max_body_bytes = 33554432
+
+[backends.MacMini]
+base_url = "http://127.0.0.1:8080/v1"
+endpoints = ["chat/completions"]
+
+[backends.LinuxGPU]
+# Local end of an SSH tunnel to the Linux PC's port 8000.
+base_url = "http://127.0.0.1:18000/v1"
+endpoints = ["chat/completions"]
+# Optional: export LINUX_LLM_API_KEY before launching the router.
+# api_key_env = "LINUX_LLM_API_KEY"
+
+# Optional separate OpenAI-compatible embedding service on the Mac mini.
+# This is NOT a model served by mlx_lm.server.
+# [backends.Embedding]
+# base_url = "http://127.0.0.1:8081/v1"
+# endpoints = ["embeddings"]
+
+# Optional Decisions API service with no GET /v1/models implementation.
+# [backends.Decisions]
+# base_url = "http://127.0.0.1:8082/v1"
+# endpoints = ["decide"]
+# models = ["your-decision-model-id"]

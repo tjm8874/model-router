@@ -1,0 +1,13 @@
+/target/
+__pycache__/
+*.pyc
+.DS_Store
+._*
+.env
+.env.*
+/router.toml
+/router.m3u.toml
+/deploy_m3u.py
+/verify*_m3u.py
+/verify_m3u.py
+*.log
